@@ -52,3 +52,30 @@ conda activate braker3 # activate environment with samtools
 samtools view -bS -o arcto-alignment.bam arcto_alignment.sam
 samtools sort arcto-alignment.bam > arcto-sorted.bam
 ```
+
+Setting up BRAKER3:
+```bash
+module load singularity
+singularity build braker3.sif docker://teambraker/braker3:latest
+singularity exec -B $PWD:$PWD braker3.sif cp /opt/BRAKER/example/singularity-tests/test1.sh .
+singularity exec -B $PWD:$PWD braker3.sif cp /opt/BRAKER/example/singularity-tests/test2.sh .
+singularity exec -B $PWD:$PWD braker3.sif cp /opt/BRAKER/example/singularity-tests/test3.sh .
+```
+
+Test setup worked:
+```bash
+bash test1.sh
+bash test2.sh
+bash test3.sh
+```
+
+Running BRAKER3:
+Need to copy over config file:
+```bash
+git xxxx
+```
+
+```bash
+singularity exec braker3.sif braker.pl --genome=data/arcto_4.fasta.masked --bam=data/arcto-sorted.bam --prot_seq=data/Arthropoda.fa --workingdir=arct
+o-2 --gff3 --species=Arcto-test --AUGUSTUS_CONFIG_PATH=/nobackup/private/lifesci/fslg_lifesciences/ssamant/braker3/config/
+```
