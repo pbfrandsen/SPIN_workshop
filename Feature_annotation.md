@@ -23,7 +23,12 @@ conda install bioconda::repeatmasker
 BuildDatabase -name <name_of_database> <reference.fasta>
 ```
 
-Now you can softmask the genome, it's recommended to use multiple threads:
+Now you can softmask the genome! Create a job file to run RepeatModeler and RepeatMasker:
+```bash
+nano repeatmasker.job
+```
+
+Copy the script below into your job file, changing the email, environment name, database name and reference name to match your files.
 ```bash
 #!/bin/bash
 
@@ -42,7 +47,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
 
 # Activate environment with RepeatModeler and RepeatMasker
 source ~/.bashrc
-conda activate hfibroin
+conda activate <environment_name>
 
 # Run code
 RepeatModeler -database <name_of_database> -threads 24 -LTRStruct
@@ -51,7 +56,7 @@ RepeatMasker -threads 24 lib <database>-families.fa -xsmall <reference.fasta>
 # -xsmall softmasks the genome
 ```
 
-BRAKER doesn't work well with long fasta header names. Check your masked reference genome and confirm that there are no spaces, weird symbols, or long names with grep:
+BRAKER doesn't work well with long fasta header names. Check your masked reference genome and confirm that there are no spaces, special symbols, or long names with grep:
 
 ```bash
 grep ">" <filename>
@@ -103,23 +108,51 @@ bash test3.sh
 
 Running BRAKER3:
 
+Create a new job script for running BRAKER:
+
 ```bash
+nano braker.job
+```
+
+```bash
+
+#!/bin/bash
+
+#SBATCH --time=72:00:00   # walltime
+#SBATCH --nodes=1   # number of nodes
+#SBATCH --mem-per-cpu=8192M   # memory per CPU core
+#SBATCH --ntasks=12   # number of processor cores (i.e. tasks)
+#SBATCH --mail-user=youremail@email.com   # email address
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --job-name= <name>
+
+# Load modules
+module load singularity
+
+# Get the SIF file into the path
+export BRAKER_SIF=<file_path_to.sif_file>
+export AUGUSTUS_CONFIG_PATH=<file_path_to_AUGUSTUS_config_file>
+
+# Run singularity
 singularity exec braker3.sif braker.pl \
---genome=data/arcto_4.fasta.masked \
+--genome=data/arcto-renamed.fasta \
 --bam=data/arcto-sorted.bam \
 --prot_seq=data/Arthropoda.fa \
---workingdir=arct
+--workingdir=arcto-grandis \
 --gff3 \
---species=Arcto-test \
---AUGUSTUS_CONFIG_PATH=/nobackup/private/lifesci/fslg_lifesciences/ssamant/braker3/config/
+--threads=12 \
+--species=Arctopsyche-grandis \
+--AUGUSTUS_CONFIG_PATH=<file_path_to_AUGUSTUS_config_directory>
+
 ```
 
 It's important to understand what each of the above lines is doing. 
---genome specifies where the softmasked reference genome is
---bam the .bam RNASeq file mapped to your genome
+--genome references the softmasked reference genome is
+--bam references the .bam RNASeq file mapped to your genome
 --prot_seq is the protein database downloaded from OrthoDB
---workingdir specifies the working directory all files will be saved into - change this so data isn't overwritten
+--workingdir specifies the working directory all files will be saved into - change this each time you run BRAKER so data isn't overwritten
 --gff3 requests output to be in gff3 format
 --species is a unique species identifier
---AUGUSTUS_CONFIG_PATH should match what you get when you move into the config folder and run "pwd".
-
+--AUGUSTUS_CONFIG_PATH is the file path to the config directory downloaded above
