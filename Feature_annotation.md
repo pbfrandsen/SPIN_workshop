@@ -51,6 +51,18 @@ RepeatMasker -threads 24 lib <database>-families.fa -xsmall <reference.fasta>
 # -xsmall softmasks the genome
 ```
 
+BRAKER doesn't work well with long fasta header names. Check your masked reference genome and confirm that there are no spaces, weird symbols, or long names with grep:
+
+```bash
+grep ">" <filename>
+```
+
+The following code removes everything in fasta headers after a space:
+
+```bash
+ cut -d ' ' -f1 <masked_reference> > <outputfile>
+```
+
 BRAKER expects you to use hisat2 to map RNASeq to your masked reference genome. You can find instructions on installing hisat2 here: https://daehwankimlab.github.io/hisat2/download/
 
 ```bash
