@@ -1,2 +1,2 @@
-# SPIN_workshop
+# SPIN workshop
 materials for SPIN genomics workshop
