@@ -168,3 +168,13 @@ It's important to understand what each of the above lines is doing.
 --gff3 requests output to be in gff3 format
 --species is a unique species identifier
 --AUGUSTUS_CONFIG_PATH is the file path to the config directory downloaded above
+
+## Examining the output:
+
+```bash
+wget https://raw.githubusercontent.com/Gaius-Augustus/GALBA/master/scripts/analyze_exons.py
+chmod u+x analyze_exons.py
+./analyze_exons.py -f arcto-grandis/braker.gtf
+./analyze_exons.py -f arcto-grandis/Augustus/augustus.hints.gtf
+./analyze_exons.py -f arcto-grandis/GeneMark-ETP/genemark.gtf
+```
