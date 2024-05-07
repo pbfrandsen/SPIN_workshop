@@ -68,13 +68,19 @@ The following code removes everything in fasta headers after a space:
  cut -d ' ' -f1 <masked_reference> > <outputfile>
 ```
 
-BRAKER expects you to use hisat2 to map RNASeq to your masked reference genome. You can find instructions on installing hisat2 here: https://daehwankimlab.github.io/hisat2/download/
+BRAKER expects you to use hisat2 (https://daehwankimlab.github.io/hisat2/download/) to map RNASeq to your masked reference genome. Activate hisat2:
 
 ```bash
+module load miniconda3/4.12-pws-472
+conda activate hisat2
+```
+
+Now index the reference genome with hisat2-build, and then map the index to the .fastq files.
+```bash
 # Index the reference genome:
-./hisat2/hisat2-build <masked-reference> <species-code>
+hisat2-build <masked-reference> <species-code>
 # Map index to .fastq files:
-./hisat2/hisat2 -x <species-code> -1 <RNASeq-dataset-1.fastq> -2 <RNASeq-dataset-2.fastq> -S <output.sam>
+hisat2 -x <species-code> -1 <RNASeq-dataset-1.fastq> -2 <RNASeq-dataset-2.fastq> -S <output.sam>
 ```
 
 Convert .sam to .bam
