@@ -91,12 +91,18 @@ module load singularity
 singularity build braker3.sif docker://teambraker/braker3:latest # this downloads the .sif file which singularity will need to run BRAKER
 
 # download the following config folder from AUGUSTUS - this needs to be in a writable directory to run BRAKER
-git clone XXX
+# We're going to download it from the BRAKER singularity
+singularity exec braker3.sif cp -r Augustus/config .
 
 # download three test files to confirm BRAKER is running correctly:
 singularity exec -B $PWD:$PWD braker3.sif cp /opt/BRAKER/example/singularity-tests/test1.sh .
 singularity exec -B $PWD:$PWD braker3.sif cp /opt/BRAKER/example/singularity-tests/test2.sh .
 singularity exec -B $PWD:$PWD braker3.sif cp /opt/BRAKER/example/singularity-tests/test3.sh .
+```
+
+Edit test files with location of AUGUSTUS config file by adding the below code to all three test files.
+```bash
+--AUGUSTUS_CONFIG_PATH=<file_path_to_AUGUSTUS_config_directory>
 ```
 
 Test setup worked by running test files:
