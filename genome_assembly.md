@@ -1,6 +1,6 @@
 # Genome Assembly
 
-Hifiasm is a tool for assembling genomes, especially with PacBio HiFi reads.
+Hifiasm is a tool for assembling genomes, especially for PacBio HiFi reads.
 
 We need to install Hifiasm first to assemble the reads of our organisms' genomes.
 
@@ -9,9 +9,9 @@ We’ll use conda to install hifiasm and create a conda environment to host hifi
 ```bash
 conda install -c bioconda hifiasm
 ```
-Press y to install hifiasm 
+Press "y" to install hifiasm.  
 
-You can activate the environment using 
+You can activate the environment using: 
 
 ```bash
 conda activate hifiasm
@@ -23,8 +23,9 @@ You can do this by using BYU's [Job Script Generator] (https://rc.byu.edu/docume
 
 
 
-Fill out the following parameters and options for your job script:
 
+
+Fill out the following parameters and options for your job script:
 
 Limit this job to one node: [select this option]
 
@@ -39,6 +40,10 @@ Job name: [add your job’s name]
 Receive email for job events: [click on begin, end, abort]
 
 Email address: [add your email address]
+
+
+
+
 
 
 
