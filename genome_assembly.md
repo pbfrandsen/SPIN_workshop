@@ -93,7 +93,7 @@ hifiasm -o caddisfly_genome.asm -t 32 caddisfly_genome.fq.gz
 
 Save the changes you made to the text file.  
 
-Now, you can run hifiasm to assemble our organism's genome:  
+Now, you can run hifiasm to assemble your organism's genome:  
 
 ```bash
 sbatch [job name].sh
