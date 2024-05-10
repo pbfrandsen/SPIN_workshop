@@ -1,4 +1,4 @@
-# Genome Assembly
+# Whole Genome Assembly
 
 Hifiasm is a tool for assembling genomes, especially for PacBio HiFi reads.
 
