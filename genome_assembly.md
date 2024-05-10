@@ -11,42 +11,51 @@ conda install -c bioconda hifiasm
 ```
 Press y to install hifiasm 
 
-you can activate the environment using 
+You can activate the environment using 
 
-conda activate hifiasm 
+```bash
+conda activate hifiasm
+```
 
-#to run hifiasm you will create a job script first. 
-#this can create the job script here BYU Job Script Generator 
+To run hifiasm, you will first create a job script. 
 
+You can do this by using BYU's [Job Script Generator] (https://rc.byu.edu/documentation/slurm/script-generator). 
 
+Fill out the following parameters and options for your job script:
 
-#for the parameters, you should add:
-#Limit this job to one node: [select this option]
-#Number of processor cores across all nodes: 32 
-#Memory per processor: 4 GB 
-#Walltime: 48 hours 
-#Job name: [add your job’s name]
-#Receive email for job events: [click on begin, end, abort]
-#Email address: [add your email address]
+Limit this job to one node: [select this option]
+Number of processor cores across all nodes: 32 
+Memory per processor: 4 GB 
+Walltime: 48 hours 
+Job name: [add your job’s name]
+Receive email for job events: [click on begin, end, abort]
+Email address: [add your email address]
 
-#Scroll down and click on 
+Then, scroll down and click on "Copy Script to Clipboard."
 
-#use your preferred text editor (vim, vi, nano) to create a text file and name it [name of job].sh 
+Go back to your terminal window.
 
-#paste your job script in the text file 
-#at the bottom of your text file, you will include adding the command to run hifiasm as well as the options you will be using while running hifiasm 
-#add these lines: 
+Use your preferred text editor (vim, vi, nano) to create a text file and name it [name of job].sh 
 
+Paste your job script in your newly created text file.  
+
+Scroll to the bottom of your text file and add a few lines of space, and then add the commands to activate hifiasm as well as to run it along with some running options. 
+
+```bash
 source ~/.bashrc 
-conda activate hifiasm 
+conda activate hifiasm
 
-hifiasm -o [Prefix of output file] -t 32  [input reads] 
+hifiasm -o [Prefix of output file] -t 32  [input reads]
+```
 
-#the t is the number of CPUs or processor cores we’ll be using, which is 24 (previously specified in the job script, too)
-#if you want to learn more about how to run this tool, you can read the hifiasm’s README file 
+ Th t stands for the number of CPUs or processor cores we’ll be using for the assembly, which is 32 (this was previously specified in the job script, too). 
 
-#save the change you made to the text file 
+ If you'd like to learn more about how to run hifiasm, here's the [README file](https://github.com/chhylp123/hifiasm).  
 
-#now you can run hifiasm and assemble our genomes: 
+Save the changes you made to the text file.  
 
-sbatch [job name].sh 
+Now, you can run hifiasm to assemble our organism's genome:  
+
+```bash
+sbatch [job name].sh
+```
