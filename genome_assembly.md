@@ -19,7 +19,7 @@ conda activate hifiasm
 
 To run hifiasm, you will first create a job script. 
 
-You can do this by using BYU's [Job Script Generator] (https://rc.byu.edu/documentation/slurm/script-generator). 
+You can do this by using BYU's [Job Script Generator](https://rc.byu.edu/documentation/slurm/script-generator). 
 
 
 Fill out the following parameters and options for your job script:
