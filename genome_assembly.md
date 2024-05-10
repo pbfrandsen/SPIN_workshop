@@ -91,7 +91,7 @@ hifiasm -o caddisfly_genome.asm -t 32 caddisfly_genome.fq.gz
 
  If you'd like to learn more about running hifiasm, here's the [README file](https://github.com/chhylp123/hifiasm).  
 
-Save the changes you made to the text file.  
+Save the changes you made and exit your text file window.  
 
 Now, you can run hifiasm to assemble your organism's genome:  
 
