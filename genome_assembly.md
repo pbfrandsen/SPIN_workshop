@@ -2,7 +2,7 @@
 
 Hifiasm is a tool for assembling genomes, especially for PacBio HiFi reads.
 
-We need to install Hifiasm first to assemble the reads of our organisms' genomes.
+We must install Hifiasm first to assemble the reads of our organisms' genomes.
 
 We’ll use conda to install hifiasm and create a conda environment to host hifiasm, using the following command:   
 
@@ -19,7 +19,7 @@ conda activate hifiasm
 
 To run hifiasm, you will first create a job script. 
 
-You can do this by using BYU's [Job Script Generator](https://rc.byu.edu/documentation/slurm/script-generator). 
+You can use BYU's [Job Script Generator](https://rc.byu.edu/documentation/slurm/script-generator). 
 
 
 Fill out the following parameters and options for your job script:
@@ -49,7 +49,7 @@ Use your preferred text editor (vim, vi, nano) to create a text file and name it
 
 Paste your job script in your newly created text file.  
 
-Scroll to the bottom of your text file, add a few lines of space, and then include the lines below to activate hifiasm as well as to run it along with some running options. 
+Scroll to the bottom of your text file, add a few lines of space, and then include the lines below to activate hifiasm and run it along with some running options. 
 
 ```bash
 source ~/.bashrc 
@@ -58,7 +58,7 @@ conda activate hifiasm
 hifiasm -o [Prefix of output file] -t 32  [input reads]
 ```
 
- The "-t" stands for the number of CPUs or processor cores we’ll be using for the genome assembly, which is 32 (this was previously specified in the job script, too). 
+ The "-t" stands for the number of CPUs or processor cores we’ll use for the genome assembly, which is 32 (previously specified in the job script). 
 
  Your job script should look something like this: 
 
