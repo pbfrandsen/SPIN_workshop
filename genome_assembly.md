@@ -120,14 +120,12 @@ sbatch [job name].sh
 ```
 Hit enter and you're done!
 
-To check if your job is running and the state of all your jobs, run the following command:
+To check if your job is running and the state of your job, run the following command:
 
 ```bash
 squeue -u [username]
 ```
 
-An 'R' should appear next to your hifiasm job number. 
+The job should take several hours to finish. 
 
-The job should take several hours. 
-
-After the job finish running, several output files will be created, including BED, GFA, and BIN files. 
+After your job finishes, several output files, including BED, GFA, and BIN files, will be created. 
