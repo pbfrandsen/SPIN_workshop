@@ -7,9 +7,8 @@ It's also pretty simple to run! For the full documentation see the website (http
 First, we'll install and activate the environment:
 
 ```bash
-conda create -n earlgrey
+module load miniconda3/4.12-pws-472
 conda activate earlgrey
-conda install -c bioconda earlgrey
 ```
 
 Let's create a directory to save our output to:
@@ -64,7 +63,7 @@ There are a lot of optional parameters to include in Earl Grey, we're only inclu
 Earl Grey usually runs for 1-3 days, depending on the size and complexity of the genome. While your job is running we're going to look at output files from a completed run. Copy over the Earl Grey output files from the shared directory:
 
 ```bash
-cp XXXX .
+cp -r /home/youruserid/fsl_groups/fslg_pws472/arcto_4_HiC_chrom_EarlGrey/ .
 ```
 
 Move into the summaryFiles directory using cd. You'll see there are several files there, including two pdfs. Download the .pdf files to your computer. Which transposable element is found in highest frequency? Have there been any recent shifts in transposable element activity?
@@ -74,5 +73,9 @@ Check out the other files in the *summaryFiles folder using head. The .gff and .
 The hard-masked and soft-masked genomes are in a different folder. Move into *RepeatMasker. View the first few lines of each file using head <filename>. Which file is hard-masked? Which is soft-masked? 
 
 Now we'll look at the intersect between heavy-chain fibroin and our estimated transposable elements. For this we need a .gff file with coordinates for h-fibroin. You'll find that in the shared folder here:
+
+```bash
+cp /home/youruserid/fsl_groups/fslg_pws472/compute/spin-workshop/Arcto-hfib.gff
+```
 
 
