@@ -2,7 +2,7 @@
 
 Hifiasm is a tool for assembling genomes, especially for PacBio HiFi reads.
 
-We must install Hifiasm first to assemble the reads of our organisms' genomes.
+We need to install Hifiasm first to assemble the reads of our organisms' genomes.
 
 We’ll use conda to create an environment and install hifiasm, using the following command:   
 
@@ -25,7 +25,7 @@ With the active hifiasm environment, you can check if hifiasm was installed corr
 hifiasm --version
 ```
 
-The output should be the version number for hifiasm, e.g. "0.16.1-r375." 
+The output should be the version number of our newly installed hifiasm software, e.g. "0.16.1-r375." 
 
 Then, you can deactivate the active hifiasm environment with: 
 
@@ -63,6 +63,10 @@ Go back to your terminal window.
 
 Use your preferred text editor (vim, vi, nano) to create a text file and name it [name of job].sh 
 
+```bash
+nano [name of job].sh 
+```
+
 Paste your job script in your newly created text file.  
 
 Scroll to the bottom of your text file, add a few lines of space, and then include the lines below to activate hifiasm and run it along with some running options. 
@@ -74,7 +78,7 @@ conda activate hifiasm
 hifiasm -o [Prefix of output file] -t 24  [input reads]
 ```
 
- The "-t" stands for the number of CPUs or processor cores we’ll use for the genome assembly, which is 32 (previously specified in the job script). 
+ The "-t" stands for the number of CPUs or processor cores we’ll use for the genome assembly, which is 24 (previously specified in the job script). 
 
  Your job script should look something like this: 
 
@@ -115,3 +119,7 @@ Now, you can run hifiasm to assemble your organism's genome:
 sbatch [job name].sh
 ```
 Hit enter and you're done!
+
+The job should take several hours. 
+
+After the job is done running, several output files will be created, including BED, GFA, and BIN files. 
