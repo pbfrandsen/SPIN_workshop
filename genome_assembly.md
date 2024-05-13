@@ -9,6 +9,8 @@ We’ll use conda to create an environment and install hifiasm, using the follow
 ```bash
 conda create -n hifiasm -c bioconda hifiasm
 ```
+The '-n' option creates a new conda environment named hifiasm, and the "-c" option installs hifiasm from the bioconda channel into the hifiasm environment. 
+
 Press "y" to install hifiasm.  
 
 You can activate the environment with: 
@@ -26,11 +28,11 @@ Fill out the following parameters and options for your job script:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Limit this job to one node: [select this option]*
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Number of processor cores across all nodes: 32* 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Number of processor cores across all nodes: 24* 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Memory per processor: 4 GB* 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Walltime: 48 hours* 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Walltime: 24 hours* 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Job name: [add your job’s name]*
 
@@ -55,7 +57,7 @@ Scroll to the bottom of your text file, add a few lines of space, and then inclu
 source ~/.bashrc 
 conda activate hifiasm
 
-hifiasm -o [Prefix of output file] -t 32  [input reads]
+hifiasm -o [Prefix of output file] -t 24  [input reads]
 ```
 
  The "-t" stands for the number of CPUs or processor cores we’ll use for the genome assembly, which is 32 (previously specified in the job script). 
@@ -65,8 +67,8 @@ hifiasm -o [Prefix of output file] -t 32  [input reads]
 ```bash
  #!/bin/bash
 
-#SBATCH --time=48:00:00   # walltime
-#SBATCH --ntasks=32   # number of processor cores (i.e. tasks)
+#SBATCH --time=24:00:00   # walltime
+#SBATCH --ntasks=24   # number of processor cores (i.e. tasks)
 #SBATCH --nodes=1   # number of nodes
 #SBATCH --mem-per-cpu=4096M   # memory per CPU core
 #SBATCH -J "genome_assembly "   # job name
@@ -86,7 +88,7 @@ source ~/.bashrc
 conda activate hifiasm
 
 
-hifiasm -o caddisfly_genome.asm -t 32 caddisfly_genome.fq.gz
+hifiasm -o caddisfly_genome.asm -t 24 caddisfly_genome.fq.gz
 ```
 
  If you'd like to learn more about running hifiasm, here's the [README file](https://github.com/chhylp123/hifiasm).  
