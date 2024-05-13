@@ -4,10 +4,10 @@ Hifiasm is a tool for assembling genomes, especially for PacBio HiFi reads.
 
 We must install Hifiasm first to assemble the reads of our organisms' genomes.
 
-We’ll use conda to install hifiasm and create a conda environment to host hifiasm, using the following command:   
+We’ll use conda to create an environment and install hifiasm, using the following command:   
 
 ```bash
-conda install -c bioconda hifiasm
+conda create -n hifiasm -c bioconda hifiasm
 ```
 Press "y" to install hifiasm.  
 
