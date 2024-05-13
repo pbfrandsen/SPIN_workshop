@@ -33,11 +33,11 @@ Then, you can deactivate the active hifiasm environment with:
 conda deactivate
 ```
 
-Now, we will run a batch job (i.e., a task submitted to the supercomputer) with hifiasm.  
+Now, we'll run a batch job (i.e., a task submitted to the supercomputer) with hifiasm.  
 
-We will first create a job script, a file with parameters and commands to run our task. 
+We'll first create a job script, a file with parameters and commands to run our task. 
 
-You can use BYU's [Job Script Generator](https://rc.byu.edu/documentation/slurm/script-generator). 
+You can create a job script by using BYU's [Job Script Generator](https://rc.byu.edu/documentation/slurm/script-generator). 
 
 
 Fill out the following parameters and options for your job script:
