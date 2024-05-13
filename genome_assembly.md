@@ -35,7 +35,7 @@ conda deactivate
 
 Now, we will run a batch job (i.e., a task submitted to the supercomputer) with hifiasm.  
 
-To run hifiasm, you will first create a job script, a file with parameters and commands to run our task. 
+We will first create a job script, a file with parameters and commands to run our task. 
 
 You can use BYU's [Job Script Generator](https://rc.byu.edu/documentation/slurm/script-generator). 
 
