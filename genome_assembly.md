@@ -9,9 +9,9 @@ We’ll use conda to create an environment and install hifiasm, using the follow
 ```bash
 conda create -n hifiasm -c bioconda hifiasm
 ```
-The '-n' option creates a new conda environment named hifiasm, and the "-c" option installs hifiasm from the bioconda channel into the hifiasm environment. 
+The '-n' option creates a new conda environment named hifiasm, and the '-c' option installs hifiasm from the bioconda channel into the hifiasm environment. 
 
-Press "y" to install hifiasm.  
+Press 'y' to install hifiasm.  
 
 You can activate the environment with: 
 
@@ -78,7 +78,7 @@ conda activate hifiasm
 hifiasm -o [Prefix of output file] -t 24  [input reads]
 ```
 
- The "-t" stands for the number of CPUs or processor cores we’ll use for the genome assembly, which is 24 (previously specified in the job script). 
+ The '-t' stands for the number of CPUs or processor cores we’ll use for the genome assembly, which is 24 (previously specified in the job script). 
 
  Your job script should look something like this: 
 
@@ -126,7 +126,7 @@ To check if your job is running and the state of all your jobs, run the followin
 squeue -u [username]
 ```
 
-An "R" should appear next to your hifiasm job number. 
+An 'R' should appear next to your hifiasm job number. 
 
 The job should take several hours. 
 
