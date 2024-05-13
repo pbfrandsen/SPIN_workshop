@@ -19,7 +19,23 @@ You can activate the environment with:
 conda activate hifiasm
 ```
 
-To run hifiasm, you will first create a job script. 
+With the active hifiasm environment, you can check if hifiasm was installed correctly by running the following command: 
+
+```bash
+hifiasm --version
+```
+
+The output should be the version number for hifiasm, e.g. "0.16.1-r375." 
+
+Then, you can deactivate the active hifiasm environment with: 
+
+```bash
+conda deactivate
+```
+
+Now, we will run a batch job (i.e., a task submitted to the supercomputer) with hifiasm.  
+
+To run hifiasm, you will first create a job script, a file with parameters and commands to run our task. 
 
 You can use BYU's [Job Script Generator](https://rc.byu.edu/documentation/slurm/script-generator). 
 
@@ -39,8 +55,6 @@ Fill out the following parameters and options for your job script:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Receive email for job events: [click on begin, end, abort]*
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Email address: [add your email address]*
-
-
 
 
 Then, scroll down and click on "Copy Script to Clipboard."
