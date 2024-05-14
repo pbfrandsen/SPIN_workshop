@@ -41,7 +41,7 @@ Paste your job script in your newly created text file.
 Scroll to the bottom of your text file, add a few lines of space, and then include the lines below to activate hifiasm and run it along with some running options. 
 
 ```bash
-source ~/.bashrc 
+module load miniconda3/4.12-pws-472
 conda activate hifiasm
 
 hifiasm -o $1.asm -t $SLURM_NPROCS $2
@@ -78,7 +78,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
 
 # LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
 
-source ~/.bashrc 
+module load miniconda3/4.12-pws-472
 conda activate hifiasm
 
 hifiasm -o $1.asm -t $SLURM_NPROCS $2
