@@ -1,39 +1,8 @@
 # Whole Genome Assembly
 
-Hifiasm is a tool for assembling genomes, especially for PacBio HiFi reads.
+[Hifiasm](https://github.com/chhylp123/hifiasm) is a tool for assembling genomes, especially for PacBio HiFi reads. It is available in `bioconda`, but also as source code that you can download and build if you so desire. There are a few different options that you can explore at the [hifiasm GitHub](https://github.com/chhylp123/hifiasm) if you feel so inclined. It is always good to become familiar with the various options.
 
-We need to install Hifiasm first to assemble the reads of our organisms' genomes.
-
-We’ll use conda to create an environment and install hifiasm, using the following command:   
-
-```bash
-conda create -n hifiasm -c bioconda hifiasm
-```
-The '-n' option creates a new conda environment named hifiasm, and the '-c' option installs hifiasm from the bioconda channel into the hifiasm environment. 
-
-Press 'y' to install hifiasm.  
-
-You can activate the environment with: 
-
-```bash
-conda activate hifiasm
-```
-
-With the active hifiasm environment, you can check if hifiasm was installed correctly by running the following command: 
-
-```bash
-hifiasm --version
-```
-
-The output should be the version number of our newly installed hifiasm software, e.g. "0.16.1-r375." 
-
-Then, you can deactivate the active hifiasm environment with: 
-
-```bash
-conda deactivate
-```
-
-Now, we'll run a batch job (i.e., a task submitted to the supercomputer) with hifiasm.  
+We'll run `hifiasm` as a batch job (i.e., a task submitted to the supercomputer).  
 
 We'll first create a job script, a file with parameters and commands to run our task. 
 
@@ -59,12 +28,12 @@ Fill out the following parameters and options for your job script:
 
 Then, scroll down and click on "Copy Script to Clipboard."
 
-Go back to your terminal window.
+Go back to your terminal window and navigate to your `~/compute` directory that holds the reads that you copied over earlier.
 
-Use your preferred text editor (vim, vi, nano) to create a text file and name it [name of job].sh 
+Use your preferred text editor (vim, vi, nano) to create a text file and name it `hifiasm.job`. Remember that file endings don't usually mean anything in `Unix` so you can name it whatever you want. I prefer `.job` to indicate that it is a job that I am submitting to the cluster. Many others use `.sh` or some other variant. Do whatever works for you, but I'd encourage you to be consistent. 
 
 ```bash
-nano [name of job].sh 
+nano hifiasm.job 
 ```
 
 Paste your job script in your newly created text file.  
@@ -75,7 +44,7 @@ Scroll to the bottom of your text file, add a few lines of space, and then inclu
 source ~/.bashrc 
 conda activate hifiasm
 
-hifiasm -o $1.asm -t $SLURM_NPROCS $1
+hifiasm -o $1.asm -t $SLURM_NPROCS $2
 
 awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.p_ctg.gfa > $1.asm.bp.p_ctg.fasta
 awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.hap1.p_ctg.gfa > $1.asm.bp.hap1.p_ctg.fasta
@@ -84,9 +53,9 @@ awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.hap2.p_ctg.gfa > $1.asm.bp.hap2.p_ct
 
  The '-t' determines the number of CPUs or processor cores, and the '-o' indicates the output file prefix. 
 
- $1 is an argument or input you'll provide when submitting your job. In this case, the argument/input is the reads file. 
+The values that begin with `$` are argument or input you'll provide when submitting your job. In this case, we'll use `$1` to indicate the prefix of what you want to call the assembly and `$2` to indicate the read `FASTQ` file. 
 
-The last three lines use the awk tool that prints '>,' the second column, a line break followed by the third column if the first column is an 'S' in the GFA file. This creates a FASTA file from the GFA file. 
+The last three lines are `awk` commands to convert the default output of `hifiasm` (a genome graph format) to `fasta`, which is useful for downstream applications. 
 
  Your job script should look something like this: 
 
@@ -112,28 +81,27 @@ export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
 source ~/.bashrc 
 conda activate hifiasm
 
-hifiasm -o $1.asm -t $SLURM_NPROCS $1
+hifiasm -o $1.asm -t $SLURM_NPROCS $2
 
 awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.p_ctg.gfa > $1.asm.bp.p_ctg.fasta
 awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.hap1.p_ctg.gfa > $1.asm.bp.hap1.p_ctg.fasta
 awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.hap2.p_ctg.gfa > $1.asm.bp.hap2.p_ctg.fasta
 ```
-
- If you'd like to learn more about running hifiasm, here's the [README file](https://github.com/chhylp123/hifiasm).  
+  
 
 Save the changes you made and exit your text file window.  
 
-Now, you can run hifiasm to assemble your organism's genome:  
+Now, you can run `hifiasm` to assemble your organism's genome:  
 
 ```bash
-sbatch [job name].sh [input file]
+sbatch hifiasm.job arctopsyche m54336U_230309_163624.hifi_reads.fastq.gz
 ```
 Hit enter and you're done!
 
 To check if your job is running and the state of your job, run the following command:
 
 ```bash
-squeue -u [username]
+squeue -u $USER
 ```
 
-The job should take several hours to finish. 
+The job should take an hour or two to finish. 
