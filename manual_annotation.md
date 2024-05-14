@@ -262,6 +262,11 @@ conda activate busco
 ```
 (That's not a typo, the conda environment has BUSCO installed, which includes Augustus so it works for our purposes :) ).
 
+Use your preferred text editor (vim, vi, nano) to create a text file and name it `annotation.sh`
+```
+nano annotation.sh
+```
+
 Copy and paste the job script below into your job file, editing it to include your email.
 ```
 #!/bin/bash
