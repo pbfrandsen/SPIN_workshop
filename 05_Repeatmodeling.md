@@ -112,7 +112,11 @@ awk '{OFS="\t"; if ($5-$4 > 0) print}' arcto_4_HiC_chrom.filteredRepeats.bed > a
 If you want to additionally look at the flanking region, run the code below to pull flanks:
 
 ```bash
+conda deactivate
+conda activate samtools
 samtools faidx genome.fna
+conda deactivate
+conda activate bedtools
 bedtools flank -i Arcto-hfib-sorted.bed -g path/to/genome/file.fai -b <flanking bp> > Arcto-hfib-flank.bed
 ```
 
