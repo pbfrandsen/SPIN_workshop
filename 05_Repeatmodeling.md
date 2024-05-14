@@ -43,7 +43,8 @@ export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
 
 # activate environment with Earl Grey
 source ~/.bashrc
-conda activate <environment>
+module load miniconda3/4.12-pws-472
+conda activate earlgrey
 
 #run Earl Grey
 earlGrey -g <genome_name> -t 24 -s <species_name> -r arthropoda -d yes -o ../earl-out/
