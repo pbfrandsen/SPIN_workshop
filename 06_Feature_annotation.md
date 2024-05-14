@@ -22,7 +22,7 @@ The following code removes everything in fasta headers after a space:
  cut -d ' ' -f1 <masked_reference> > <outputfile>
 ```
 
-BRAKER expects you to use hisat2 (https://daehwankimlab.github.io/hisat2/download/) to map RNASeq to your masked reference genome. Activate hisat2:
+BRAKER expects you to use [`hisat2`](https://daehwankimlab.github.io/hisat2/download/) to map RNASeq to your masked reference genome. Activate hisat2:
 
 ```bash
 module load miniconda3/4.12-pws-472
@@ -130,6 +130,8 @@ It's important to understand what each of the above lines is doing.
 --AUGUSTUS_CONFIG_PATH is the file path to the config directory downloaded above
 
 ## Examining the output:
+
+We're just going to quickly look at some stats to see how the different gene annotations compare. To do this we'll copy a script from GALBA:
 
 ```bash
 wget https://raw.githubusercontent.com/Gaius-Augustus/GALBA/master/scripts/analyze_exons.py
