@@ -15,7 +15,7 @@ Fill out the following parameters and options for your job script:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Number of processor cores across all nodes: 24* 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Memory per processor: 4 GB* 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Memory per processor: 14 GB* 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Walltime: 24 hours* 
 
@@ -65,7 +65,7 @@ The last three lines are `awk` commands to convert the default output of `hifias
 #SBATCH --time=24:00:00   # walltime
 #SBATCH --ntasks=24   # number of processor cores (i.e. tasks)
 #SBATCH --nodes=1   # number of nodes
-#SBATCH --mem-per-cpu=4096M   # memory per CPU core
+#SBATCH --mem-per-cpu=14096M   # memory per CPU core
 #SBATCH -J "genome_assembly "   # job name
 #SBATCH --mail-user=<your_email>   # email address
 #SBATCH --mail-type=BEGIN
@@ -91,7 +91,7 @@ awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.hap2.p_ctg.gfa > $1.asm.bp.hap2.p_ct
 
 Save the changes you made and exit your text file window.  
 
-Now, you can run `hifiasm` to assemble your organism's genome:  
+Now, you can run `hifiasm` to assemble your organism's genome **Note** if you are using your own reads, you'll need to substitute the `fastq` file name with whatever filename contains your reads:  
 
 ```bash
 sbatch hifiasm.job arctopsyche m54336U_230309_163624.hifi_reads.fastq.gz
