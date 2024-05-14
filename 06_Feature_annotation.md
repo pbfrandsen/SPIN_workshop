@@ -54,18 +54,22 @@ BRAKER has a lot of dependencies, including AUGUSTUS, which also has many depend
 ```bash
 module load singularity
 singularity build braker3.sif docker://teambraker/braker3:latest # this downloads the .sif file which singularity will need to run BRAKER
+```
+We need to download a config folder from AUGUSTUS to our own directory to make it writable for BRAKER. I already downloaded the config folder, you can copy it to your own directory: 
 
-# download the following config folder from AUGUSTUS - this needs to be in a writable directory to run BRAKER
-# We're going to download it from the BRAKER singularity
-singularity exec braker3.sif cp -r Augustus/config .
+```bash
+cp -r userid/fsl_groups/fslg_nanopore/compute/genomics_workshop_byu_may_24 .
+```
 
-# download three test files to confirm BRAKER is running correctly:
+Now we'll download three test files to confirm BRAKER is running correctly:
+
+```bash
 singularity exec -B $PWD:$PWD braker3.sif cp /opt/BRAKER/example/singularity-tests/test1.sh .
 singularity exec -B $PWD:$PWD braker3.sif cp /opt/BRAKER/example/singularity-tests/test2.sh .
 singularity exec -B $PWD:$PWD braker3.sif cp /opt/BRAKER/example/singularity-tests/test3.sh .
 ```
 
-Edit test files with location of AUGUSTUS config file by adding the below code to all three test files.
+Before we run the test files, we need to edit them with the location of the AUGUSTUS config file. To do this, add the below code to all three test files after braker.pl in the job files.
 ```bash
 --AUGUSTUS_CONFIG_PATH=<file_path_to_AUGUSTUS_config_directory>
 ```
