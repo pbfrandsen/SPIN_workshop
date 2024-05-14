@@ -33,7 +33,7 @@ Go back to your terminal window and navigate to your `~/compute` directory that 
 Use your preferred text editor (vim, vi, nano) to create a text file and name it `hifiasm.job`. Remember that file endings don't usually mean anything in `Unix` so you can name it whatever you want. I prefer `.job` to indicate that it is a job that I am submitting to the cluster. Many others use `.sh` or some other variant. Do whatever works for you, but I'd encourage you to be consistent. 
 
 ```bash
-nano hifiasm.job 
+$ nano hifiasm.job 
 ```
 
 Paste your job script in your newly created text file.  
@@ -94,14 +94,14 @@ Save the changes you made and exit your text file window.
 Now, you can run `hifiasm` to assemble your organism's genome **Note** if you are using your own reads, you'll need to substitute the `fastq` file name with whatever filename contains your reads:  
 
 ```bash
-sbatch hifiasm.job arctopsyche m54336U_230309_163624.hifi_reads.fastq.gz
+$ sbatch hifiasm.job arctopsyche m54336U_230309_163624.hifi_reads.fastq.gz
 ```
 Hit enter and you're done!
 
 To check if your job is running and the state of your job, run the following command:
 
 ```bash
-squeue -u $USER
+$ squeue -u $USER
 ```
 
 The job should take an hour or two to finish and we will take a look at the finished product tomorrow! 
