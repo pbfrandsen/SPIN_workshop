@@ -33,8 +33,6 @@ Then, you can deactivate the active hifiasm environment with:
 conda deactivate
 ```
 
-Next, we need to install BEPDOPS
-
 Now, we'll run a batch job (i.e., a task submitted to the supercomputer) with hifiasm.  
 
 We'll first create a job script, a file with parameters and commands to run our task. 
