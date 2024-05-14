@@ -10,7 +10,7 @@
 
 We already have the above files prepared. However, when running BRAKER3 on your own data, follow the below steps to prepare your reference genome, RNASeq data and protein data. BRAKER can also be run with only RNASeq data, or with only protein data. For more information on BRAKER, check their github: https://github.com/Gaius-Augustus/BRAKER#f19
 
-1. Softmask the reference genome.
+Softmask the reference genome.
 - You can use RepeatMasker and RepeatModeler, or Earl Grey. We'll use results from Earl Grey.
 
 BRAKER doesn't work well with long fasta header names. Check your masked reference genome and confirm that there are no spaces, special symbols, or long names with grep:
@@ -74,16 +74,16 @@ Before we run the test files, we need to edit them with the location of the AUGU
 --AUGUSTUS_CONFIG_PATH=<file_path_to_AUGUSTUS_config_directory>
 ```
 
-Test setup worked by running test files:
+Test the setup worked by running the test files:
+
 ```bash
 bash test1.sh
 bash test2.sh
 bash test3.sh
 ```
 
-Running BRAKER3:
+Now we can run BRAKER3 on our data! Create a new job script like the one below to run BRAKER. 
 
-Create a new job script for running BRAKER:
 
 ```bash
 nano braker.job
