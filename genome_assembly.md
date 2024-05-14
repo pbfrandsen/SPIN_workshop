@@ -75,10 +75,18 @@ Scroll to the bottom of your text file, add a few lines of space, and then inclu
 source ~/.bashrc 
 conda activate hifiasm
 
-hifiasm -o [Prefix of output file] -t 24  [input reads]
+hifiasm -o $1.asm -t $SLURM_NPROCS $1
+
+awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.p_ctg.gfa > $1.asm.bp.p_ctg.fasta
+awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.hap1.p_ctg.gfa > $1.asm.bp.hap1.p_ctg.fasta
+awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.hap2.p_ctg.gfa > $1.asm.bp.hap2.p_ctg.fasta
 ```
 
- The '-t' stands for the number of CPUs or processor cores we’ll use for the genome assembly, which is 24 (previously specified in the job script). 
+ The '-t' determines the number of CPUs or processor cores, and the '-o' indicates the output file prefix. 
+
+ $1 is an argument or input you'll provide when submitting your job. In this case, the argument/input is the reads file. 
+
+The last three lines use the awk tool that prints '>,' the second column, a line break followed by the third column if the first column is an 'S' in the GFA file. This creates a FASTA file from the GFA file. 
 
  Your job script should look something like this: 
 
@@ -101,12 +109,14 @@ export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
 
 # LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
 
-
 source ~/.bashrc 
 conda activate hifiasm
 
+hifiasm -o $1.asm -t $SLURM_NPROCS $1
 
-hifiasm -o caddisfly_genome.asm -t 24 caddisfly_genome.fq.gz
+awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.p_ctg.gfa > $1.asm.bp.p_ctg.fasta
+awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.hap1.p_ctg.gfa > $1.asm.bp.hap1.p_ctg.fasta
+awk '$1 ~/S/ {print ">"$2"\n"$3}' $1.asm.bp.hap2.p_ctg.gfa > $1.asm.bp.hap2.p_ctg.fasta
 ```
 
  If you'd like to learn more about running hifiasm, here's the [README file](https://github.com/chhylp123/hifiasm).  
@@ -116,7 +126,7 @@ Save the changes you made and exit your text file window.
 Now, you can run hifiasm to assemble your organism's genome:  
 
 ```bash
-sbatch [job name].sh
+sbatch [job name].sh [input file]
 ```
 Hit enter and you're done!
 
@@ -127,5 +137,3 @@ squeue -u [username]
 ```
 
 The job should take several hours to finish. 
-
-After your job finishes, several output files, including BED, GFA, and BIN files, will be created. 
