@@ -1,6 +1,8 @@
 # Repeat modeling and Repeat masking
+###### Last updated: May 14, 2024
+------------------------------------------------------------------------
 
-Earl Grey is a transposable element annotation pipeline. It combines both RepeatModeler and RepeatMasker, and provides almost all the output files you could possibly want. 
+Earl Grey is a transposable element annotation pipeline. It combines both `RepeatModeler` and `RepeatMasker`, and provides almost all the output files you could possibly want. 
 
 It's also pretty simple to run! For the full documentation see the [`website`](https://github.com/TobyBaril/EarlGrey?tab=readme-ov-file#recommended-installation-with-conda-or-mamba)
 
