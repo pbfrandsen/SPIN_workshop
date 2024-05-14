@@ -59,3 +59,7 @@ This should complete in about 15 minutes, but may vary depending on how busy the
 `fsl_groups/fslg_nanopore/compute/genomics_workshop_byu_may_24/reads.histo`.
 
 This is a good time to practice copying files over (with `cp`) and/or downloading files (I like to use `scp`).
+
+Once your `reads.histo` file is downloaded to your computer, navigate to the [GenomeScope2 webserver](http://genomescope.org/genomescope2.0/). Once there, you can enter a description for your job, ensure that the kmer length is set to `21` and the ploidy to `2`. Obviously if you used a different kmer length to count kmers or have a polyploid organism, you would change those values.
+
+Now, go ahead and drag and drop your `reads.histo` file into the box and scroll down and click on `Submit`. Now, your job will run and `Genomescope2` will fit a model to your kmer histogram. Once you are ready, let's explore the output together.
