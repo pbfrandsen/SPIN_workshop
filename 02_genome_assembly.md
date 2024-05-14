@@ -60,7 +60,7 @@ The last three lines are `awk` commands to convert the default output of `hifias
  Your job script should look something like this: 
 
 ```bash
- #!/bin/bash
+#!/bin/bash
 
 #SBATCH --time=24:00:00   # walltime
 #SBATCH --ntasks=24   # number of processor cores (i.e. tasks)
