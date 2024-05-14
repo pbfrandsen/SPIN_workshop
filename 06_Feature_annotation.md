@@ -11,50 +11,7 @@
 We already have the above files prepared. However, when running BRAKER3 on your own data, follow the below steps to prepare your reference genome, RNASeq data and protein data. BRAKER can also be run with only RNASeq data, or with only protein data. For more information on BRAKER, check their github: https://github.com/Gaius-Augustus/BRAKER#f19
 
 1. Softmask the reference genome.
-- Install RepeatModeler and RepeatMasker inside conda environment if not already installed:
-```bash
-conda install -c bioconda -c conda-forge repeatmodeler
-conda install bioconda::repeatmasker
-```
-
-- Build a database for Repeat Modeler, this should go fairly quickly.
-
-```bash
-BuildDatabase -name <name_of_database> <reference.fasta>
-```
-
-Now you can softmask the genome! Create a job file to run RepeatModeler and RepeatMasker:
-```bash
-nano repeatmasker.job
-```
-
-Copy the script below into your job file, changing the email, environment name, database name and reference name to match your files.
-```bash
-#!/bin/bash
-
-#SBATCH --time=72:00:00   # walltime
-#SBATCH --ntasks=24   # number of processor cores (i.e. tasks)
-#SBATCH --nodes=1   # number of nodes
-#SBATCH --mem-per-cpu=8192M   # memory per CPU core
-#SBATCH -J "soft-mask"   # job name
-#SBATCH --mail-user=youremail@email.com   # email address
-#SBATCH --mail-type=BEGIN
-#SBATCH --mail-type=END
-#SBATCH --mail-type=FAIL
-
-# Set the max number of threads to use for programs using OpenMP. Should be <= ppn. Does nothing if the program doesn't use OpenMP.
-export OMP_NUM_THREADS=$SLURM_CPUS_ON_NODE
-
-# Activate environment with RepeatModeler and RepeatMasker
-source ~/.bashrc
-conda activate <environment_name>
-
-# Run code
-RepeatModeler -database <name_of_database> -threads 24 -LTRStruct
-# Name of database should match what was used above
-RepeatMasker -threads 24 lib <database>-families.fa -xsmall <reference.fasta>
-# -xsmall softmasks the genome
-```
+- You can use RepeatMasker and RepeatModeler, or Earl Grey. We'll use results from Earl Grey.
 
 BRAKER doesn't work well with long fasta header names. Check your masked reference genome and confirm that there are no spaces, special symbols, or long names with grep:
 
@@ -76,6 +33,7 @@ conda activate hisat2
 ```
 
 Now index the reference genome with hisat2-build, and then map the index to the .fastq files.
+
 ```bash
 # Index the reference genome:
 hisat2-build <masked-reference> <species-code>
@@ -85,7 +43,8 @@ hisat2 -x <species-code> -1 <RNASeq-dataset-1.fastq> -2 <RNASeq-dataset-2.fastq>
 
 Convert .sam to .bam
 ```bash
-conda activate braker3 # activate environment with samtools
+conda deactivate
+conda activate xxx # activate environment with samtools
 samtools view -bS -o arcto-alignment.bam arcto_alignment.sam #convert .sam to .bam
 samtools sort arcto-alignment.bam > arcto-sorted.bam #sort .bam
 ```
