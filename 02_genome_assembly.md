@@ -104,4 +104,4 @@ To check if your job is running and the state of your job, run the following com
 squeue -u $USER
 ```
 
-The job should take an hour or two to finish. 
+The job should take an hour or two to finish and we will take a look at the finished product tomorrow! 
