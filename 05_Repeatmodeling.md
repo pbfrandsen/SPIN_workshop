@@ -2,7 +2,7 @@
 
 Earl Grey is a transposable element annotation pipeline. It combines both RepeatModeler and RepeatMasker, and provides almost all the output files you could possibly want. 
 
-It's also pretty simple to run! For the full documentation see the website (https://github.com/TobyBaril/EarlGrey?tab=readme-ov-file#recommended-installation-with-conda-or-mamba)
+It's also pretty simple to run! For the full documentation see the [`website`](https://github.com/TobyBaril/EarlGrey?tab=readme-ov-file#recommended-installation-with-conda-or-mamba)
 
 First, we'll install and activate the environment:
 
@@ -57,9 +57,9 @@ sbatch earlgrey.job
 ```
 
 There are a lot of optional parameters to include in Earl Grey, we're only including a few of them:
-- -t == number of threads
-- -r == search term for RepeatMasker
-- -d == create a soft-masked genome (we will need this later in the week, default is no)
+- `-t == number of threads`
+- `-r == search term for RepeatMasker`
+- `-d == create a soft-masked genome (we will need this later in the week, default is no)`
 
 Earl Grey usually runs for 1-3 days, depending on the size and complexity of the genome. While your job is running we're going to look at output files from a completed run. Copy over the Earl Grey output files from the shared directory:
 
@@ -67,9 +67,9 @@ Earl Grey usually runs for 1-3 days, depending on the size and complexity of the
 cp -r /home/youruserid/fsl_groups/fslg_pws472/arcto_4_HiC_chrom_EarlGrey/ .
 ```
 
-Move into the summaryFiles directory using cd. You'll see there are several files there, including two pdfs. Download the .pdf files to your computer. Which transposable element is found in highest frequency? Have there been any recent shifts in transposable element activity?
+Move into the `*summaryFiles` directory using `cd`. You'll see there are several files there, including two pdfs. Download the .pdf files to your computer. Which transposable element is found in highest frequency? Have there been any recent shifts in transposable element activity?
 
-Check out the other files in the *summaryFiles folder using head. The .gff and .bed file provide coordinates and the contig name for each of the transposable elements. *combined_library.fasta has all of the transposable elements found in the genome. 
+Check out the other files in the `*summaryFiles` folder using head. The `.gff` and `.bed` file provide coordinates and the contig name for each of the transposable elements. `*combined_library.fasta` has all of the transposable elements found in the genome. 
 
 Copy the .bed file into a new directory, we'll need it for the intersect analysis.
 
@@ -77,16 +77,16 @@ Copy the .bed file into a new directory, we'll need it for the intersect analysi
 cp *.bed ~/compute/
 ```
 
-The hard-masked and soft-masked genomes are in a different folder. Move into *RepeatMasker. View the first few lines of each file using head <filename>. Which file is hard-masked? Which is soft-masked? 
+The hard-masked and soft-masked genomes are in a different folder. Move into `*RepeatMasker`. View the first few lines of each file using `head <filename>`. Which file is hard-masked? Which is soft-masked? 
 
-Now we'll look at the intersect between heavy-chain fibroin and our estimated transposable elements. For this we need a .gff file with coordinates for h-fibroin. You'll find that in the shared folder, copy it into your personal directory:
+Now we'll look at the intersect between heavy-chain fibroin and our estimated transposable elements. For this we need a `.gff` file with coordinates for h-fibroin. You'll find that in the shared folder, copy it into your personal directory:
 
 ```bash
 mv ~/compute/
 cp /home/youruserid/fsl_groups/fslg_pws472/compute/spin-workshop/Arcto-hfib.gff .
 ```
 
-Deactivate the earlgrey environment and activate bedops to convert Arcto-hfib.gff to .bed:
+Deactivate the `earlgrey` environment and activate bedops to convert `Arcto-hfib.gff` to `.bed`:
 
 ```bash
 conda deactivate
@@ -94,7 +94,7 @@ conda activate bedops
 gff2bed < Arcto-hfib.gff > Arcto-hfib.bed
 ```
 
-Deactivate the bedops environment and activate bedtools to sort both bedfiles:
+Deactivate the `bedops` environment and activate `bedtools` to sort both bedfiles:
 
 ```bash
 conda deactivate
