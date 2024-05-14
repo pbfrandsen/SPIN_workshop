@@ -1,4 +1,4 @@
-# Whole Genome Assembly
+# 2: Whole Genome Assembly
 
 [Hifiasm](https://github.com/chhylp123/hifiasm) is a tool for assembling genomes, especially for PacBio HiFi reads. It is available in `bioconda`, but also as source code that you can download and build if you so desire. There are a few different options that you can explore at the [hifiasm GitHub](https://github.com/chhylp123/hifiasm) if you feel so inclined. It is always good to become familiar with the various options.
 
