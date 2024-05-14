@@ -34,7 +34,7 @@ Remember to include the `.`. That is indicates that you want the file destinatio
 
 `$ ls *fastq.gz > files.txt`
 
-Next, you'll need to create a job file. Remember, you can do this with the [job script generator](https://rc.byu.edu/documentation/slurm/script-generator). Choose a single node, 24 cores, 4 hours, and 6 hours. `KMC` can take a lot of RAM so select 14 GB of RAM per CPU. Then make a job file, perhaps called `kmc.job` and paste in the output from the job script generator. Once that it pasted in, make sure you add the commands to load the miniconda module and activate the `KMC` environment:
+Next, you'll need to create a job file. Remember, you can do this with the [job script generator](https://rc.byu.edu/documentation/slurm/script-generator). Choose a single node, 24 cores, and 6 hours. `KMC` can take a lot of RAM so select 14 GB of RAM per CPU. Then make a job file, perhaps called `kmc.job` and paste in the output from the job script generator. Once that it pasted in, make sure you add the commands to load the miniconda module and activate the `KMC` environment:
 
 ```
 module load miniconda3/4.12-pws-472
