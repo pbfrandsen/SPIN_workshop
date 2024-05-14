@@ -1,4 +1,4 @@
-#01: kmer counting with KMC and genome size estimation with GenomeScope2
+# 01: kmer counting with KMC and genome size estimation with GenomeScope2
 
 In this portion of the workshop, we will take a fastq file containing PacBio HiFi reads and, first, use [`KMC`](https://github.com/refresh-bio/KMC) to count kmers and then use [`GenomeScope 2`](http://genomescope.org/genomescope2.0/) to estimate genome size, heterozygosity, and repeat content from the kmers.
 
@@ -21,7 +21,7 @@ $ gzip example.fastq
 However, for sake of saving time, we'll go ahead and get started with the raw reads from the `fastq` file that I've provided.
 
 
-###kmer counting with `KMC`
+### kmer counting with `KMC`
 First, navigate to your `~/compute` directory. On the BYU supercomputer, this is where you should do all analysis. There is more limited space in your home directory so it is not well-suited for genomics analysis. It is easy to get to your compute directory from anywhere in the supercomputer. Simply type:
 
 `$ cd ~/compute`
