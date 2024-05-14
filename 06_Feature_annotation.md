@@ -44,7 +44,7 @@ hisat2 -x <species-code> -1 <RNASeq-dataset-1.fastq> -2 <RNASeq-dataset-2.fastq>
 Convert .sam to .bam
 ```bash
 conda deactivate
-conda activate xxx # activate environment with samtools
+conda activate samtools # activate environment with samtools
 samtools view -bS -o arcto-alignment.bam arcto_alignment.sam #convert .sam to .bam
 samtools sort arcto-alignment.bam > arcto-sorted.bam #sort .bam
 ```
