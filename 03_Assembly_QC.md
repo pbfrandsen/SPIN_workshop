@@ -36,7 +36,7 @@ d. Open the job file and add the following commands to the bottom, separated by 
 ```
 module load miniconda3/4.12-pws-472
 conda activate busco
-busco -o plodia_busco -i arctopsyche.asm.p_ctg.fasta -l insecta_odb10 -c 4 -m genome --offline
+busco -o busco_insecta -i arctopsyche.asm.p_ctg.fasta -l insecta_odb10 -c 4 -m genome --offline
 ```
 
 Note, that you should substitute your particular genome assembly file for "arctopsyche.p_ctg.fasta". NOte, we are using the `insecta_odb10` dataset. For some taxa, there are more specific datasets that you could use. For example, there is a `lepidoptera_odb10` dataset and for holometabolous insects, there is a `endoptergyota_odb10` dataset.
