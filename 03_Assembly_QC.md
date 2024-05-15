@@ -1,6 +1,6 @@
 # 03: Assembly QC
 
-Now that we have a whole genome assembly, we're going to do some quick checks to see how it looks. The first thing that we will do is estimate the contig statistics with [`QUAST`](https://github.com/ablab/quast). Then we will run `compleasm` to get a handle on genome completeness.
+Now that we have a whole genome assembly, we're going to do some quick checks to see how it looks. The first thing that we will do is estimate the contig statistics with [`QUAST`](https://github.com/ablab/quast). Then we will run `BUSCO` to get a handle on genome completeness.
 
 ### QUAST
 
