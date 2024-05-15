@@ -37,6 +37,7 @@ module load miniconda3/4.12-pws-472
 conda activate blast
 
 blastn \
+-task megablast \
 -db /apps/blast/databases/nt \
 -query [path to contigs] \
 -outfmt "6 qseqid staxids bitscore std" \
