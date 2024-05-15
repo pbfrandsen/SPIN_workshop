@@ -21,32 +21,22 @@ quast <assembly_name>.p_ctg.fasta
 
 Now it will run on your genome and the results will be added to `quast_results/latest`. Once your run is complete, you can navigate to that folder. There should be a file called `report.pdf`. Go ahead and download that file with `scp` and examine it's contents.
 
-### Compleasm
+### BUSCO
 
-[`compleasm`](https://github.com/huangnengCSU/compleasm) is a re-implementation of [`BUSCO`](https://busco.ezlab.org/), which was designed to evaluate your genome assembly for the presence of universal single copy orthologs. These gene sets are generated from [`OrthoDB`](https://www.orthodb.org/).
+[`BUSCO`](https://busco.ezlab.org/) was designed to evaluate your genome assembly for the presence of universal single copy orthologs. These gene sets are generated from [`OrthoDB`](https://www.orthodb.org/).
 
-First copy the lineage files from `~/fsl_groups/fslg_nanopore/compute/genomics_workshop_byu_may_2/mb_downloads`. Make sure you copy that folder into the same folder that holds your genome assembly file. For example, if your genome assembly file was in, e.g. `~/compute/genome_workshop`. You could copy it by first navigating to that folder:
+Create a new job script using the [Job Script Generator](https://rc.byu.edu/documentation/slurm/script-generator). Make sure that the job is limited to one node, select 4 processor cores, 4 GB of RAM per processor, and a wall-time of 12 hours. Copy the resulting script into a new job file called `busco.job`.
 
+Copy the `busco_downloads` folder from the following path to your working folder (the one containing your genome assembly file).
 ```
-cd ~/compute/genome_workshop
+cp -r ~/fsl_groups/fslg_pws472/compute/lab5/data/busco_downloads ./
 ```
-
-And then copy it over with:
-
-```
-cp -r ~/fsl_groups/fslg_nanopore/compute/genomics_workshop_byu_may_2/mb_downloads .
-```
-
-Next, you'll want to run `compleasm`. You will want to make a new job file for this from the [BYU job script generator](https://rc.byu.edu/documentation/slurm/script-generator).
-
-Choose 12 threads, 5 GB of RAM per thread and 4 hours.
-
-Copy and paste that into a new file called, e.g. `compleasm.job`. At the bottom of your script add:
+d. Open the job file and add the following commands to the bottom, separated by line breaks:
 
 ```
 module load miniconda3/4.12-pws-472
-conda activate compleasm
-compleasm run -a arctopsyche.p_ctg.fasta -o compleasm_out -l endopterygota -t $SLURM_NPROCS
+conda activate busco
+busco -o plodia_busco -i arctopsyche.asm.p_ctg.fasta -l insecta_odb10 -c 4 -m genome --offline
 ```
 
-Note, that you should substitute your particular genome assembly file for "arctopsyche.p_ctg.fasta". For caddisflies, the endopterygota gene set is the best set, however, if you have an insect that is not in endopterygota, you might just want to use the "insecta" dataset. To do this, you would substitute "insecta" for "endopterygota" in the job file.
+Note, that you should substitute your particular genome assembly file for "arctopsyche.p_ctg.fasta". NOte, we are using the `insecta_odb10` dataset. For some taxa, there are more specific datasets that you could use. For example, there is a `lepidoptera_odb10` dataset and for holometabolous insects, there is a `endoptergyota_odb10` dataset.
