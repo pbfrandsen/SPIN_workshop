@@ -41,7 +41,7 @@ ls *fa > sequence_list.txt
 Check how many sequences there are in your sequence list
 
 ```
-wc -l
+wc -l sequence_list.txt
 ```
 
 For _Arctopsyche_ it should be 246. Take note of your number if it is different so that you can put it into the job script.
