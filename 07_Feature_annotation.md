@@ -67,7 +67,7 @@ singularity build braker3.sif docker://teambraker/braker3:latest # this download
 We need to download a config folder from AUGUSTUS to our own directory to make it writable for BRAKER. I already downloaded the config folder, you can copy it to your own directory: 
 
 ```bash
-cp -r userid/fsl_groups/fslg_nanopore/compute/genomics_workshop_byu_may_24 .
+cp -r ~/userid/fsl_groups/fslg_nanopore/compute/genomics_workshop_byu_may_24/config/ .
 ```
 
 Now we'll download three test files to confirm BRAKER is running correctly:
