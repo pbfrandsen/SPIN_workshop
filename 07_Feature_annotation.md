@@ -10,6 +10,18 @@
 
 We already have the above files prepared. However, when running BRAKER3 on your own data, follow the below steps to prepare your reference genome, RNASeq data and protein data. BRAKER can also be run with only RNASeq data, or with only protein data. For more information on BRAKER, check their [`github`](https://github.com/Gaius-Augustus/BRAKER#f19)
 
+Here is the softmasked genome:
+
+```bash
+cp ~/fsl_groups/fslg_nanopore/compute/genomics_workshop_byu_may_24/arcto_4_HiC_chrom_EarlGrey/arcto_4_HiC_chrom_summaryFiles .
+```
+
+Here is the protein database folder and RNASeq data:
+
+```bash
+cp ~/fsl_groups/fslg_nanopore/compute/genomics_workshop_byu_may_24/braker-files/* .
+```
+
 BRAKER doesn't work well with long fasta header names. Check your masked reference genome and confirm that there are no spaces, special symbols, or long names with grep:
 
 ```bash
