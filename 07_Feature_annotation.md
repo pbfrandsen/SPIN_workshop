@@ -13,7 +13,7 @@ We already have the above files prepared. However, when running BRAKER3 on your 
 Here is the softmasked genome:
 
 ```bash
-cp ~/fsl_groups/fslg_nanopore/compute/genomics_workshop_byu_may_24/arcto_4_HiC_chrom_EarlGrey/arcto_4_HiC_chrom_summaryFiles .
+cp ~/fsl_groups/fslg_nanopore/compute/genomics_workshop_byu_may_24/arcto_4_HiC_chrom_EarlGrey/arcto_4_HiC_chrom_summaryFiles/arcto_4_HiC_chrom.softmasked.fasta .
 ```
 
 Here is the protein database folder and RNASeq data:
