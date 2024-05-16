@@ -40,3 +40,30 @@ busco -o busco_insecta -i arctopsyche.asm.bp.p_ctg.fasta -l insecta_odb10 -c 4 -
 ```
 
 Note, that you should substitute your particular genome assembly file for "arctopsyche.p_ctg.fasta". NOte, we are using the `insecta_odb10` dataset. For some taxa, there are more specific datasets that you could use. For example, there is a `lepidoptera_odb10` dataset and for holometabolous insects, there is a `endoptergyota_odb10` dataset.
+
+### tidk
+
+Another way to evaluate the quality of your genome assembly is to see how many contigs contain telomeres. With high-quality, long reads, we can often assemble whole chromosomes! You can verify this by the presence of telomere sequence at both ends of the contig. There is a nice tool developed by the Darwin Tree of Life team to do this called [`tidk`](https://github.com/tolkit/telomeric-identifier).
+
+Now, go ahead and change directories into the directory containing your assembled genome. Now load the conda module and activate the conda environment with tidk installed.
+
+```
+module load miniconda3/4.12-pws-472
+conda activate tidk
+```
+
+Next, we're going to search for telomere sequences, using clade-specific telomere sequences. If you are using the sample data, this will be `Trichoptera`. However, I know some of you are analyzing other genomes and you might be able to find the clade in the documentation for [`tidk`](https://github.com/tolkit/telomeric-identifier). I know there are clade specific sets for `Lepidoptera`, `Hymenoptera`, and `Plecoptera`. If your clade isn't listed, you can try the closest related clade, or, alternatively, try to find the telomere sequence from an earlier publication and use `tidk search` instead of `tidk find`.
+
+`tidk` is pretty fast so you can just run it interactively. Here is an example command:
+
+```
+tidk find -c Trichoptera -o arcto_tidk -d tidk_results arctopsyche.asm.p_ctg.fasta
+```
+
+After the finding it finished, you can then make plots with:
+
+```
+tidk plot -t tidk_results/arcto_tidk_telomeric_repeat_windows.tsv
+```
+
+Now, you'll have a new image file called `tidk-plot.svg` that you can download to check out whether your contigs have telomeres!
